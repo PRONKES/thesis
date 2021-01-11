@@ -85,10 +85,9 @@ export default {
     this.socket.on("typing", data => {
       this.feedback = data;
     });
-  },
-  created() {
     this.initialize();
   },
+
   computed: {
     ...mapState(["user"])
   },
