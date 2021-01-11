@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div>
-      <v-text-field
-        v-model="customText"
-        label="Place Title"
-        required
-      ></v-text-field
-      ><br /><br />
-    </div>
+    <v-flex>
+      <div>
+        <v-text-field
+          class="map"
+          prepend-icon="mdi-map-marker"
+          v-model="customText"
+          label="Place Title"
+          required
+          clearable
+        ></v-text-field
+        ><br /><br />
+      </div>
+    </v-flex>
     <div id="map-wrap" style="height: 80vh">
       <no-ssr>
         <l-map
@@ -25,9 +30,7 @@
             :key="index"
             @click="removeMarker(index)"
           >
-            <l-tooltip :options="{ permanent: true, interactive: true }">{{
-              place.title
-            }}</l-tooltip>
+            <l-tooltip :options="{ permanent: true, interactive: true }">{{place.title}}</l-tooltip>
           </l-marker>
         </l-map>
       </no-ssr>
@@ -46,11 +49,10 @@ export default {
   methods: {
     async initialize() {
       const places = await this.$axios.$get(`/api/place/${this.$route.params.id}`);
-
       this.places = places;
     },
     getLatLng({ lat, lng }) {
-      console.log([lat, lng]);
+      
       return [lat, lng];
     },
     async addMarker(event) {
@@ -62,14 +64,13 @@ export default {
           lng,
           title: this.customText
         };
-        console.log(place);
+     
         await this.$axios.$post("/api/place", place);
         await this.initialize();
       }
     },
     async removeMarker(index) {
       let place = this.places[index];
-      console.log(index, place, this.places);
       await this.$axios.$delete(`/api/place/${place._id}`);
       await this.initialize();
     }
@@ -79,5 +80,9 @@ export default {
 <style scoped>
 #customTextInput {
   background-color: white;
+}
+.map {
+  width: 300px;
+  /* height: 150px; */
 }
 </style>
