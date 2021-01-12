@@ -95,7 +95,7 @@ export default {
     async initialize() {
       const users = await this.$axios.$get("/api/users");
       this.users = users;
-      this.to = this.users[0]
+      // this.to = this.users[0]
       await this.getMessages();
     },
     async submit() {
