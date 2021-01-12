@@ -56,11 +56,7 @@ routers.use(passport.initialize());
 routers.use(passport.session());
 routers.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
-    console.log({
-      username: req.user.username,
-      _id: req.user._id,
-      type: req.user.type
-    });
+
     return res.send({
       username: req.user.username,
       _id: req.user._id,
@@ -154,8 +150,16 @@ routers.use("/activity", activity);
 const chats = require("./routes/chats.js");
 routers.use("/chats", chats);
 
+const checkAuthenticated = (req, res,next) => {
+if(req.isAuthenticated()){
+  return next()
+}else{
+  return { username: false }
+}
+}
+
 var users = require("./routes/users.js");
-routers.use("/users", users);
+routers.use("/users",checkAuthenticated, users);
 // View engine setup
 
 app.use("/api", routers);

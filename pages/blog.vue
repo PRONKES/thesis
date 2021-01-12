@@ -12,7 +12,7 @@
       </template>
       <v-card>
         <span class="headline">{{ formTitle }}</span>
-        <p>{{ $moment() }}</p>
+
         <v-card-text>
           <v-container>
             <v-row>
@@ -80,7 +80,7 @@ export default {
     dialogDelete: false,
     blogs: [],
     selectedFile: null,
-    date: new Date().toLocaleString(),
+
     valid: true,
     editedIndex: -1,
     editedItem: {

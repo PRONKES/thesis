@@ -60,7 +60,7 @@ export default {
       { text: "Appointment Date", value: "appointmentDate" },
       { text: "Place", value: "place" },
       { text: "Number Of People", value: "numberOfPeople" },
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "Delete", value: "actions", sortable: false },
     ],
     products: [],
     editedIndex: -1,
