@@ -4,6 +4,12 @@ module.exports = {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   serverMiddleware: ["~/api/index.js"],
   head: {
+    script: [
+      {
+        src: 'https://checkout.stripe.com/checkout.js', 
+        defer: true 
+      }
+    ],
     titleTemplate: "%s - project",
     title: "project",
     meta: [
