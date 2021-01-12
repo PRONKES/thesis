@@ -56,11 +56,7 @@ routers.use(passport.initialize());
 routers.use(passport.session());
 routers.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
-    console.log({
-      username: req.user.username,
-      _id: req.user._id,
-      type: req.user.type
-    });
+
     return res.send({
       username: req.user.username,
       _id: req.user._id,

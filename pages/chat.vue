@@ -72,14 +72,13 @@ export default {
   async mounted() {
     this.socket = io.connect();
     this.socket.on("connect", async () => {
-      console.log("Connection");
-      console.log("socket", this.socket.id);
+    
       let user = await this.$axios.$put(`/api/users`, {
         socket: this.socket.id
       });
     });
     this.socket.on("update", async data => {
-      console.log({ data });
+     
       this.getMessages();
     });
     this.socket.on("typing", data => {
@@ -95,7 +94,6 @@ export default {
     async initialize() {
       const users = await this.$axios.$get("/api/users");
       this.users = users;
-      // this.to = this.users[0]
       await this.getMessages();
     },
     async submit() {
@@ -116,7 +114,6 @@ export default {
     async getMessages() {
       if (this.to) {
         const messages = await this.$axios.$get(`/api/chats?user2=${this.to}`);
-        console.log({ messages });
         this.messages = messages;
       }
     },
