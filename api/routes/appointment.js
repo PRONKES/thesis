@@ -20,6 +20,7 @@ router.route("/").post(function(req, res) {
     <p>You have a new reservation</p>
     <h3>Contact Details</h3>
     <ul>  
+      <li>User: ${req.user.email}</li>
       <li>Appointment Date: ${req.body.appointmentDate}</li>
       <li>Place: ${req.body.place}</li>
       <li>Number Of People: ${req.body.numberOfPeople}</li>
