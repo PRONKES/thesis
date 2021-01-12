@@ -1,6 +1,9 @@
 let obj = require("vuetify/es5/util/colors");
 let colors = obj.default;
 module.exports = {
+  server: {
+    host: "0.0.0.0"
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   serverMiddleware: ["~/api/index.js"],
   head: {
