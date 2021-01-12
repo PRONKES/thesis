@@ -12,7 +12,7 @@
       </template>
       <v-card>
         <span class="headline">{{ formTitle }}</span>
-        <p>{{ $moment() }}</p>
+        <p>time</p>
         <v-card-text>
           <v-container>
             <v-row>

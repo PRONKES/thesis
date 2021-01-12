@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 var cookieParser = require("cookie-parser");
@@ -72,13 +73,10 @@ routers.get("/user", (req, res) => {
 });
 
 routers.post("/login", passport.authenticate("local"), function(req, res) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
   console.log("req.user", { user: req.user });
   res.json({ user: req.user });
 });
 
-//google
 routers.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -93,7 +91,7 @@ routers.get(
     res.redirect("/");
   }
 );
-//facebook
+
 routers.get(
   "/auth/facebook",
   passport.authenticate("facebook", {
@@ -125,7 +123,6 @@ routers.delete("/logout", (req, res) => {
   req.logOut();
 
   res.sendStatus(204);
-  // res.redirect("/login");
 });
 
 function checkNotAuthenticated(req, res, next) {
@@ -141,8 +138,8 @@ routers.use("/blogs", blogs);
 var appointment = require("./routes/appointment.js");
 routers.use("/appointment", appointment);
 
-var place = require("./routes/place.js")
-routers.use("/place",place)
+var place = require("./routes/place.js");
+routers.use("/place", place);
 
 routers.get("/images/:img", (req, res) => {
   res.sendFile(path.join(__dirname, "uploads", req.params.img));
@@ -156,7 +153,6 @@ routers.use("/chats", chats);
 
 var users = require("./routes/users.js");
 routers.use("/users", users);
-// View engine setup
 
 app.use("/api", routers);
 module.exports = app;

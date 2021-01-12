@@ -21,18 +21,7 @@ function initialize(passport) {
           .then(newUser => {
             done(null, newUser);
           });
-        // const userData = {
-        //   email,
-        //   firstName: first_name,
-        //   lastName: last_name
-        // };
-        // new User.save();
-        // done(null, profile);
-        // new User(userData)
-        //   .save()
-        //   .then(newUser => {
-        //     done(null, newUser);
-        //   });
+        
       }
     )
   );
