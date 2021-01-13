@@ -1,5 +1,5 @@
-let obj = require("vuetify/es5/util/colors");
-let colors = obj.default;
+let obj1 = require("vuetify/es5/util/colors");
+let colors = obj1.default;
 module.exports = {
   server:{
     host:"0.0.0.0"
