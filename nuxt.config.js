@@ -5,7 +5,8 @@ module.exports = {
     host:"0.0.0.0"
   },
   // Global page headers ( https://go.nuxtjs.dev/config-head )
-  serverMiddleware: ["~/api/index.js"],
+ 
+   // serverMiddleware: ["~/api/index.js"],
   head: {
     script: [
       {
@@ -49,13 +50,13 @@ module.exports = {
   ],
   pwa: {
     meta: {
-      title: 'My PWA',
-      author: 'Me'
+      title: 'THE ESCAPER',
+      author: 'GHOFRANE,AHMED,DHIA',
     },
     manifest: {
-      name: 'Nuxt.js PWAs are so easy',
-      short_name: 'Nuxt.js PWA',
-      lang: 'en'
+      name: 'THE ESCAPER',
+      short_name: 'ESCAPER',
+      lang: 'en',
     }
   },
 
