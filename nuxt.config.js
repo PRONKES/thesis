@@ -1,17 +1,22 @@
 let obj1 = require("vuetify/es5/util/colors");
 let colors = obj1.default;
+console.log(process.env.PORT, process.env.HOST);
 module.exports = {
-  server:{
-    host:"0.0.0.0"
+  env: {
+    baseURL: process.env.BASE_URL
+  },
+  server: {
+    port: 443,
+    host: "0.0.0.0"
   },
   // Global page headers ( https://go.nuxtjs.dev/config-head )
- 
-   // serverMiddleware: ["~/api/index.js"],
+
+  // serverMiddleware: ["~/api/index.js"],
   head: {
     script: [
       {
-        src: 'https://checkout.stripe.com/checkout.js', 
-        defer: true 
+        src: "https://checkout.stripe.com/checkout.js",
+        defer: true
       }
     ],
     titleTemplate: "%s - project",
@@ -46,20 +51,19 @@ module.exports = {
     "@nuxtjs/axios",
     "mdbvue/nuxt",
     "nuxt-leaflet",
-    '@nuxtjs/pwa'
+    "@nuxtjs/pwa"
   ],
   pwa: {
     meta: {
-      title: 'THE ESCAPER',
-      author: 'GHOFRANE,AHMED,DHIA',
+      title: "THE ESCAPER",
+      author: "GHOFRANE,AHMED,DHIA"
     },
     manifest: {
-      name: 'THE ESCAPER',
-      short_name: 'ESCAPER',
-      lang: 'en',
+      name: "THE ESCAPER",
+      short_name: "ESCAPER",
+      lang: "en"
     }
   },
-
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
