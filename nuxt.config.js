@@ -1,7 +1,10 @@
-let obj = require("vuetify/es5/util/colors");
-let colors = obj.default;
+let obj1 = require("vuetify/es5/util/colors");
+let colors = obj1.default;
 module.exports = {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  server:{
+    host:"0.0.0.0"
+  },
+  // Global page headers ( https://go.nuxtjs.dev/config-head )
   serverMiddleware: ["~/api/index.js"],
   head: {
     script: [
@@ -41,8 +44,21 @@ module.exports = {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     "mdbvue/nuxt",
-    "nuxt-leaflet"
+    "nuxt-leaflet",
+    '@nuxtjs/pwa'
   ],
+  pwa: {
+    meta: {
+      title: 'My PWA',
+      author: 'Me'
+    },
+    manifest: {
+      name: 'Nuxt.js PWAs are so easy',
+      short_name: 'Nuxt.js PWA',
+      lang: 'en'
+    }
+  },
+
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
