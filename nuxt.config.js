@@ -6,7 +6,6 @@ module.exports = {
     baseURL: process.env.BASE_URL
   },
   server: {
-    port: 443,
     host: "0.0.0.0"
   },
   // Global page headers ( https://go.nuxtjs.dev/config-head )
@@ -66,7 +65,10 @@ module.exports = {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: "https://escaper-2021.herokuapp.com/",
+    https: true
+  },
   mdbvue: {},
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
