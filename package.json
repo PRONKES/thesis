@@ -7,8 +7,9 @@
     "debug": "ndb api/server",
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "startNuxt": "nuxt start",
+    "generate": "nuxt generate",
+    "start": "node api/server"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.4",
