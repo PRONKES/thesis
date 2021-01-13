@@ -87,8 +87,8 @@
         </v-card>
       </v-menu>
     </v-app-bar>
-    <v-main>
-      <nuxt />
+    <v-main class="pa-6">
+     <nuxt />
     </v-main>
   </v-app>
 </template>
@@ -124,8 +124,8 @@ export default {
             to: "/"
           }
         ];
-      }else if(this.user.type ==="admin"){
-         return [
+      } else if (this.user.type === "admin") {
+        return [
           {
             icon: "mdi-apps",
             title: "Home",
@@ -141,7 +141,7 @@ export default {
             title: "Chat",
             to: "/chat"
           },
-          { 
+          {
             icon: "mdi mdi-clipboard-text",
             title: "Reservation List",
             to: "/appointment_list"
@@ -150,12 +150,9 @@ export default {
             icon: "mdi mdi-clipboard-text",
             title: "Add Services",
             to: "/activities"
-          },
-
-
+          }
         ];
-      } 
-      else {
+      } else {
         return [
           {
             icon: "mdi-apps",
@@ -172,9 +169,7 @@ export default {
             icon: "mdi mdi-clipboard-text",
             title: "Chat",
             to: "/chat"
-          },
-          
-          
+          }
         ];
       }
     }
