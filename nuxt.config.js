@@ -4,7 +4,7 @@ module.exports = {
   server:{
     host:"0.0.0.0"
   },
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  // Global page headers ( https://go.nuxtjs.dev/config-head )
   serverMiddleware: ["~/api/index.js"],
   head: {
     titleTemplate: "%s - project",
