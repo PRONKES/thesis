@@ -1,17 +1,13 @@
-require("dotenv").config();
-const path = require("path");
 const express = require("express");
-let { SESSION_SECRET, NODE_ENV } = process.env;
-console.log({ SESSION_SECRET, NODE_ENV });
+require('dotenv').config()
+const path = require("path");
 const { User } = require("./db/models/users");
 
 const port = process.env.PORT || 3000;
-const isProd = process.env.NODE_ENV === "production";
-
+let isProd = process.env.NODE_ENV === "production";
 const app = require("./index");
-if (process.env.NODE_ENV === "production") {
+if (isProd) {
   let pth = path.join(__dirname, "../dist");
-  console.log({ pth });
   app.use(express.static(pth));
 } else {
   const { Nuxt, Builder } = require("nuxt");
@@ -27,7 +23,6 @@ if (process.env.NODE_ENV === "production") {
   }
   app.use(nuxt.render);
 }
-
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 io.on("connection", socket => {

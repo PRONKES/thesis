@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  class="py-6">
     <v-dialog v-model="dialog" max-width="500px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
@@ -44,9 +44,15 @@
       </v-card>
     </v-dialog>
     <v-container>
-      <v-row align-content="stretch">
-        <v-col v-for="(activity, index) in activities" :key="index">
-          <v-card style="height:100%" class="mx-auto" max-width="400">
+      <v-row align-content="stretch" justify="center">
+        <v-col
+          v-for="(activity, index) in activities"
+          :key="index"
+          lg="4"
+          sm="6"
+          xs="12"
+        >
+          <v-card style="height:100%">
             <v-img
               class="white--text align-end"
               height="200px"

@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row align-content="stretch">
+  <v-container justify="center">
+    <v-row align-content="stretch" justify="center">
       <v-col v-for="(activity, index) in activities" :key="index">
         <v-card style="height:100%" class="mx-auto" max-width="400">
           <v-img

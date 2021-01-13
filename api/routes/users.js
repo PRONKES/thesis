@@ -4,7 +4,7 @@ var userControle = require("../db/controllers/userControle.js");
 var router = express.Router();
 
 router.route("/").get(function(req, res) {
-  userControle.read((err, data) => {
+  userControle.read(req.user,(err, data) => {
     if (err) {
       throw err;
     }

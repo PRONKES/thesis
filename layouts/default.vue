@@ -87,8 +87,8 @@
         </v-card>
       </v-menu>
     </v-app-bar>
-    <v-main>
-      <nuxt />
+    <v-main class="pa-6">
+     <nuxt />
     </v-main>
   </v-app>
 </template>
@@ -122,8 +122,15 @@ export default {
             icon: "mdi-apps",
             title: "Home",
             to: "/"
+          }
+        ];
+      } else if (this.user.type === "admin") {
+        return [
+          {
+            icon: "mdi-apps",
+            title: "Home",
+            to: "/"
           },
-
           {
             icon: "mdi mdi-clipboard-text",
             title: "Blog",
@@ -131,14 +138,19 @@ export default {
           },
           {
             icon: "mdi mdi-clipboard-text",
+            title: "Chat",
+            to: "/chat"
+          },
+          {
+            icon: "mdi mdi-clipboard-text",
+            title: "Reservation List",
+            to: "/appointment_list"
+          },
+          {
+            icon: "mdi mdi-clipboard-text",
             title: "Add Services",
             to: "/activities"
           }
-          // {
-          //   icon: "mdi mdi-clipboard-text",
-          //   title: "Reservation",
-          //   to: "/appointment"
-          // }
         ];
       } else {
         return [
@@ -157,16 +169,6 @@ export default {
             icon: "mdi mdi-clipboard-text",
             title: "Chat",
             to: "/chat"
-          },
-          {
-            icon: "mdi mdi-clipboard-text",
-            title: "Add Services",
-            to: "/activities"
-          },
-          {
-            icon: "mdi mdi-clipboard-text",
-            title: "Reservation",
-            to: "/appointment"
           }
         ];
       }

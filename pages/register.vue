@@ -74,7 +74,6 @@ export default {
           email: this.email,
           password: this.password
         };
-
         let rtn = await this.$axios.$post("/api/register", userObj);
         this.$router.push("/login");
         const user = await this.$axios.$get("/api/user");
