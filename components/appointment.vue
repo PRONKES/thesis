@@ -45,7 +45,7 @@
           @change="$v.checkbox.$touch()"
           @blur="$v.checkbox.$touch()"
         ></v-checkbox>
-
+        <v-btn>{{activity}}sssss</v-btn>
         <v-btn class="mr-4" @click="submit">
           submit
         </v-btn>
@@ -60,7 +60,7 @@ import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
-
+  props: ['activity'],
   validations: {
     appointmentDate: { required, maxLength: maxLength(10) },
     place: { required },
@@ -77,15 +77,6 @@ export default {
     place: "",
     numberOfPeople: "",
     checkbox: false,
-    items: [
-      { text: "State 1" },
-      { text: "State 2" },
-      { text: "State 3" },
-      { text: "State 4" },
-      { text: "State 5" },
-      { text: "State 6" },
-      { text: "State 7" }
-    ],
     states: [
       "Bni Mtir C",
       "Cape Angela C",
