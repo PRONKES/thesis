@@ -1,5 +1,6 @@
 var express = require("express");
 var appointmentControle = require("../db/controllers/appointmentControle.js");
+var placeControle = require("../db/controllers/placeControle.js");
 const exphbs = require("express-handlebars");
 var smtpTransport = require("nodemailer-smtp-transport");
 const nodemailer = require("nodemailer");
@@ -9,7 +10,8 @@ var router = express.Router();
 // app.engine('handlebars', exphbs());
 // app.set('view engine', 'handlebars');
 
-router.route("/").post(function(req, res) {
+router.route("/").post(async function(req, res) {
+  debugger
   appointmentControle.create({...req.body,user:req.user.id}, (err, data) => {
     if (err) {
       throw err;
@@ -22,11 +24,11 @@ router.route("/").post(function(req, res) {
     <ul>  
       <li>User: ${req.user.email}</li>
       <li>Appointment Date: ${req.body.appointmentDate}</li>
-      <li>Place: ${req.body.place}</li>
+      <li>Place: ${req.body.place_title}</li>
       <li>Number Of People: ${req.body.numberOfPeople}</li>
     </ul>
   `;
-
+   
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -58,7 +60,7 @@ router.route("/").post(function(req, res) {
 
 
 router.route("/").get(function(req, res) {
-  appointmentControle.read(req.user.id,(err, data) => {
+  appointmentControle.read(req,(err, data) => {
     if (err) {
       throw err;
     }

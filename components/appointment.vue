@@ -16,6 +16,7 @@
           @blur="$v.appointmentDate.$touch()"
         ></v-text-field>
         <v-select
+          return-object
           v-model="place"
           :items="places"
           item-value="_id"
@@ -28,7 +29,6 @@
           @input="$v.place.$touch()"
           @blur="$v.place.$touch()"
         ></v-select>
-
         <v-text-field
           v-model="numberOfPeople"
           :error-messages="numberOfPeopleErrors"
@@ -118,8 +118,9 @@ export default {
       let appointment = {
         activity: this.activity._id,
         appointmentDate: this.appointmentDate,
-        place: this.place,
+        place: this.place._id,
         numberOfPeople: this.numberOfPeople,
+        place_title: this.place.title,
       };
 
       let rtn = await this.$axios.$post("/api/appointment", appointment);
