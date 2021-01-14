@@ -19,7 +19,7 @@
         </l-map>
       </no-ssr>
     </div>
-    <appointment :activity="activity" />
+    <appointment :activity="activity" :places="places" />
   </div>
 </template>
 <script>

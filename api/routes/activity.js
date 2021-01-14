@@ -38,6 +38,14 @@ router.route("/").get(function(req, res) {
     res.send(data);
   });
 });
+router.route("/:id").get(function(req, res) {
+  activityControl.readOne(req.params.id,(err, data) => {
+    if (err) {
+      throw err;
+    }
+    res.send(data);
+  });
+});
 router.route("/:id").put(function(req, res) {
   console.log(req.body);
   activityControl.update(req.params.id, req.body, (err, data) => {

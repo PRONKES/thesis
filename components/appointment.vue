@@ -17,7 +17,9 @@
         ></v-text-field>
         <v-select
           v-model="place"
-          :items="states"
+          :items="places"
+          item-value="_id"
+          item-text="title"
           menu-props="auto"
           hide-details
           :error-messages="placeErrors"
@@ -36,7 +38,7 @@
           @input="$v.numberOfPeople.$touch()"
           @blur="$v.numberOfPeople.$touch()"
         ></v-text-field>
-
+        <p class="font-weight-black">Price {{activity.price * numberOfPeople}}$</p>
         <v-checkbox
           v-model="checkbox"
           :error-messages="checkboxErrors"
@@ -45,10 +47,7 @@
           @change="$v.checkbox.$touch()"
           @blur="$v.checkbox.$touch()"
         ></v-checkbox>
-        <v-btn>{{activity}}sssss</v-btn>
-        <v-btn class="mr-4" @click="submit">
-          submit
-        </v-btn>
+        <v-btn class="mr-4" @click="submit"> submit </v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -60,7 +59,7 @@ import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
-  props: ['activity'],
+  props: ["activity","places"],
   validations: {
     appointmentDate: { required, maxLength: maxLength(10) },
     place: { required },
@@ -68,60 +67,15 @@ export default {
     checkbox: {
       checked(val) {
         return val;
-      }
-    }
+      },
+    },
   },
 
   data: () => ({
     appointmentDate: "",
     place: "",
     numberOfPeople: "",
-    checkbox: false,
-    states: [
-      "Bni Mtir C",
-      "Cape Angela C",
-      "Zaghouan C",
-      "Ain Drahem C",
-      "Oued Zitoun C",
-      "Hammam El Ghezaz C",
-      "Zriba Olia C",
-      "Douz C",
-      "Kef Abed C",
-      "Cape Serrat C",
-      "Hawariya H",
-      "Qurbus H ",
-      "Tabarka H",
-      "Djerba H",
-      "Testour H",
-      "Ichkeul Lakes H",
-      "Boukornine H",
-      "Beni Khiar H",
-      "Barrage El Masri H",
-      "Nahli H",
-      "Djerba Q",
-      "Douz Q",
-      "Tataouine Q",
-      "Tozeur Q",
-      "Sousse Q",
-      "Midoun Q",
-      "Hammamet Q",
-      "Zarzis Q",
-      "Sidi Bou Said K",
-      "Kantaoui K",
-      "Yasmine Hammamet K",
-      "Tamazrat G",
-      "Tozeur G",
-      "Zarzis G",
-      "Zaghouan G",
-      "Medinine G",
-      "Sousse G",
-      "Mahdia G",
-      "Monastir G",
-      "Nahli P",
-      "Hammamet P",
-      "Bizerte P",
-      "Monastir P"
-    ]
+    checkbox: false
   }),
 
   computed: {
@@ -152,7 +106,7 @@ export default {
       !this.$v.appointmentDate.required &&
         errors.push("appointmentDate is required.");
       return errors;
-    }
+    },
   },
 
   methods: {
@@ -162,13 +116,13 @@ export default {
       let user = {
         appointmentDate: this.appointmentDate,
         place: this.place,
-        numberOfPeople: this.numberOfPeople
+        numberOfPeople: this.numberOfPeople,
       };
 
       let rtn = await this.$axios.$post("/api/appointment", user);
       console.log({ user, rtn });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
