@@ -10,7 +10,7 @@ var router = express.Router();
 // app.set('view engine', 'handlebars');
 
 router.route("/").post(function(req, res) {
-  appointmentControle.create(req.body, (err, data) => {
+  appointmentControle.create({...req.body,user:req.user.id}, (err, data) => {
     if (err) {
       throw err;
     }
@@ -58,7 +58,7 @@ router.route("/").post(function(req, res) {
 
 
 router.route("/").get(function(req, res) {
-  appointmentControle.read((err, data) => {
+  appointmentControle.read(req.user.id,(err, data) => {
     if (err) {
       throw err;
     }

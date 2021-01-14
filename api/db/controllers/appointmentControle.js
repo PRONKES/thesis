@@ -1,12 +1,23 @@
 const { Appointment } = require("../models/appointmentModel");
+var { Activity } = require("../models/activityModel");
 
 module.exports = {
-  create: (obj, callbacks) => {
-    const app = new Appointment(obj);
+  create: async (obj, callbacks) => {
+    let { user, appointmentDate, place, numberOfPeople, activity } = obj;
+    let actv = await Activity.findOne({ _id: activity });
+    let price = actv.price * numberOfPeople;
+    const app = new Appointment({
+      user,
+      appointmentDate,
+      place,
+      numberOfPeople,
+      activity,
+      price
+    });
     app.save(callbacks);
   },
-  read: callbacks => {
-    Appointment.find().exec(callbacks);
+  read: (user, callbacks) => {
+    Appointment.find({ user }).exec(callbacks);
   },
   delete: (id, callback) => {
     Appointment.findByIdAndRemove({ _id: id }).exec(callback);

@@ -38,7 +38,9 @@
           @input="$v.numberOfPeople.$touch()"
           @blur="$v.numberOfPeople.$touch()"
         ></v-text-field>
-        <p class="font-weight-black">Price {{activity.price * numberOfPeople}}$</p>
+        <p class="font-weight-black">
+          Price {{ activity.price * numberOfPeople }}$
+        </p>
         <v-checkbox
           v-model="checkbox"
           :error-messages="checkboxErrors"
@@ -59,7 +61,7 @@ import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
-  props: ["activity","places"],
+  props: ["activity", "places"],
   validations: {
     appointmentDate: { required, maxLength: maxLength(10) },
     place: { required },
@@ -75,7 +77,7 @@ export default {
     appointmentDate: "",
     place: "",
     numberOfPeople: "",
-    checkbox: false
+    checkbox: false,
   }),
 
   computed: {
@@ -113,14 +115,14 @@ export default {
     async submit() {
       this.$v.$touch();
 
-      let user = {
+      let appointment = {
+        activity: this.activity._id,
         appointmentDate: this.appointmentDate,
         place: this.place,
         numberOfPeople: this.numberOfPeople,
       };
 
-      let rtn = await this.$axios.$post("/api/appointment", user);
-      console.log({ user, rtn });
+      let rtn = await this.$axios.$post("/api/appointment", appointment);
     },
   },
 };
