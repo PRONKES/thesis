@@ -26,14 +26,10 @@ if (isProd) {
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 io.on("connection", socket => {
-  console.log("made socket connection", socket.id);
 
   // Handle chat event
   socket.on("update", async function(data) {
-    debugger;
-    console.log("update", data);
     let user = await User.findOne({ _id: data.to });
-    console.log(user, io.sockets.sockets);
     if (user.socket !== undefined) {
       socket.broadcast.to(user.socket).emit("update", { from: data.from });
     }

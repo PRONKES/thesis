@@ -13,7 +13,6 @@ router.route("/").get(function(req, res) {
 });
 
 router.route("/").put(function(req, res) {
-  console.log(req.body);
   userControle.update(req.user.id, req.body, (err, data) => {
     if (err) {
       throw err;

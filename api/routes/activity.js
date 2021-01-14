@@ -8,7 +8,6 @@ var storage = multer.diskStorage({
     cb(null, "./api/uploads");
   },
   filename: function(req, file, cb) {
-    console.log(file);
     cb(null, file.originalname);
   }
 });
@@ -20,7 +19,6 @@ router.post("/", upload.single("image"), function(req, res) {
     price: req.body.price,
 
   };
-  console.log("obj", obj);
 
   activityControl.create(obj, (err, data) => {
     if (err) {
@@ -47,7 +45,6 @@ router.route("/:id").get(function(req, res) {
   });
 });
 router.route("/:id").put(function(req, res) {
-  console.log(req.body);
   activityControl.update(req.params.id, req.body, (err, data) => {
     if (err) {
       throw err;
@@ -56,7 +53,6 @@ router.route("/:id").put(function(req, res) {
   });
 });
 router.route("/:id").delete((req, res) => {
-  console.log(req.params.id);
   activityControl.delete(req.params.id, (err, data) => {
     if (err) {
       throw err;
