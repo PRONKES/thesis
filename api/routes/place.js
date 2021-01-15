@@ -18,7 +18,6 @@ router.post("/", function (req, res) {
     lng: req.body.lng,
     title: req.body.title,
   };
-  console.log("obj", obj);
   placeControle.create(obj, (err, data) => {
     if (err) {
       throw err;
@@ -28,7 +27,6 @@ router.post("/", function (req, res) {
 });
 
 router.delete("/:id", function (req, res) {
-  console.log(req.params.id);
   placeControle.delete(req.params.id, (err, data) => {
     if (err) {
       throw err;
