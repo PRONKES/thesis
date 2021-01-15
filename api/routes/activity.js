@@ -16,8 +16,7 @@ router.post("/", upload.single("image"), function(req, res) {
   const obj = {
     image: req.file.originalname,
     description: req.body.description,
-    price: req.body.price,
-
+    price: req.body.price
   };
 
   activityControl.create(obj, (err, data) => {
@@ -37,15 +36,24 @@ router.route("/").get(function(req, res) {
   });
 });
 router.route("/:id").get(function(req, res) {
-  activityControl.readOne(req.params.id,(err, data) => {
+  activityControl.readOne(req.params.id, (err, data) => {
     if (err) {
       throw err;
     }
     res.send(data);
   });
 });
-router.route("/:id").put(function(req, res) {
-  activityControl.update(req.params.id, req.body, (err, data) => {
+
+router.put("/:id", upload.single("image"), function(req, res) {
+  const obj = {
+    description: req.body.description,
+    price: req.body.price
+  };
+  if (req.file !== undefined) {
+    obj.image = req.file.originalname;
+  }
+
+  activityControl.update(req.params.id, obj, (err, data) => {
     if (err) {
       throw err;
     }
