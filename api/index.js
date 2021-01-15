@@ -76,12 +76,8 @@ routers.get("/user", (req, res) => {
 });
 
 routers.post("/login", passport.authenticate("local"), function(req, res) {
-<<<<<<< HEAD
-  console.log("req.user", { user: req.user });
-=======
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
->>>>>>> main
   res.json({ user: req.user });
 });
 
