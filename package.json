@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "server": "nodemon api/server",
-    "debug": "ndb api/server",
+    "debug": "ndb api/server.js",
     "dev": "nuxt",
     "build": "nuxt build",
     "startNuxt": "nuxt start",
@@ -39,7 +39,8 @@
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
     "vuelidate": "^0.7.6",
-    "vuesax": "^3.12.2"
+    "vuesax": "^3.12.2",
+    "stripe": "^8.131.0"
   },
   "devDependencies": {
     "@nuxtjs/moment": "^1.6.1",

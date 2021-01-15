@@ -7,6 +7,9 @@ module.exports = {
   read: (id, callbacks) => {
     PlaceModel.find({ activity: id }).exec(callbacks);
   },
+  readOne: (id) => {
+    PlaceModel.findOne({ _id: id });
+  },
   delete: (id, callback) => {
     PlaceModel.findOneAndDelete({ _id: id }).exec(callback);
   },

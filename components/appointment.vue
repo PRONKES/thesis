@@ -16,8 +16,11 @@
           @blur="$v.appointmentDate.$touch()"
         ></v-text-field>
         <v-select
+          return-object
           v-model="place"
-          :items="states"
+          :items="places"
+          item-value="_id"
+          item-text="title"
           menu-props="auto"
           hide-details
           :error-messages="placeErrors"
@@ -26,7 +29,6 @@
           @input="$v.place.$touch()"
           @blur="$v.place.$touch()"
         ></v-select>
-
         <v-text-field
           v-model="numberOfPeople"
           :error-messages="numberOfPeopleErrors"
@@ -36,7 +38,9 @@
           @input="$v.numberOfPeople.$touch()"
           @blur="$v.numberOfPeople.$touch()"
         ></v-text-field>
-
+        <p class="font-weight-black">
+          Price {{ activity.price * numberOfPeople }}$
+        </p>
         <v-checkbox
           v-model="checkbox"
           :error-messages="checkboxErrors"
@@ -45,10 +49,7 @@
           @change="$v.checkbox.$touch()"
           @blur="$v.checkbox.$touch()"
         ></v-checkbox>
-
-        <v-btn class="mr-4" @click="submit">
-          submit
-        </v-btn>
+        <v-btn class="mr-4" @click="submit"> submit </v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -60,7 +61,7 @@ import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
-
+  props: ["activity", "places"],
   validations: {
     appointmentDate: { required, maxLength: maxLength(10) },
     place: { required },
@@ -68,8 +69,8 @@ export default {
     checkbox: {
       checked(val) {
         return val;
-      }
-    }
+      },
+    },
   },
 
   data: () => ({
@@ -77,60 +78,6 @@ export default {
     place: "",
     numberOfPeople: "",
     checkbox: false,
-    items: [
-      { text: "State 1" },
-      { text: "State 2" },
-      { text: "State 3" },
-      { text: "State 4" },
-      { text: "State 5" },
-      { text: "State 6" },
-      { text: "State 7" }
-    ],
-    states: [
-      "Bni Mtir C",
-      "Cape Angela C",
-      "Zaghouan C",
-      "Ain Drahem C",
-      "Oued Zitoun C",
-      "Hammam El Ghezaz C",
-      "Zriba Olia C",
-      "Douz C",
-      "Kef Abed C",
-      "Cape Serrat C",
-      "Hawariya H",
-      "Qurbus H ",
-      "Tabarka H",
-      "Djerba H",
-      "Testour H",
-      "Ichkeul Lakes H",
-      "Boukornine H",
-      "Beni Khiar H",
-      "Barrage El Masri H",
-      "Nahli H",
-      "Djerba Q",
-      "Douz Q",
-      "Tataouine Q",
-      "Tozeur Q",
-      "Sousse Q",
-      "Midoun Q",
-      "Hammamet Q",
-      "Zarzis Q",
-      "Sidi Bou Said K",
-      "Kantaoui K",
-      "Yasmine Hammamet K",
-      "Tamazrat G",
-      "Tozeur G",
-      "Zarzis G",
-      "Zaghouan G",
-      "Medinine G",
-      "Sousse G",
-      "Mahdia G",
-      "Monastir G",
-      "Nahli P",
-      "Hammamet P",
-      "Bizerte P",
-      "Monastir P"
-    ]
   }),
 
   computed: {
@@ -161,23 +108,25 @@ export default {
       !this.$v.appointmentDate.required &&
         errors.push("appointmentDate is required.");
       return errors;
-    }
+    },
   },
 
   methods: {
     async submit() {
       this.$v.$touch();
 
-      let user = {
+      let appointment = {
+        activity: this.activity._id,
         appointmentDate: this.appointmentDate,
-        place: this.place,
-        numberOfPeople: this.numberOfPeople
+        place: this.place._id,
+        numberOfPeople: this.numberOfPeople,
+        place_title: this.place.title,
       };
 
-      let rtn = await this.$axios.$post("/api/appointment", user);
-      console.log({ user, rtn });
-    }
-  }
+      let rtn = await this.$axios.$post("/api/appointment", appointment);
+      this.$router.push("/profile");
+    },
+  },
 };
 </script>
 <style scoped>

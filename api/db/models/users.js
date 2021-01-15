@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
   provider: String,
   googleId: String,
   type: String,
-  socket: String
+  socket: String,
+  image: { type: String, default: "profile_default.png" }
 });
 UserSchema.methods.validPassword = async function(password) {
   try {

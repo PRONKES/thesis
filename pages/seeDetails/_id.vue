@@ -20,7 +20,7 @@
       </no-ssr>
     </v-card>
     <v-card class="reservation">
-      <appointment />
+      <appointment :activity="activity" :places="places" />
     </v-card>
   </v-container>
 </template>
@@ -30,13 +30,18 @@ export default {
   components: { appointment },
   data: () => ({
     places: [],
-    customText: ""
+    customText: "",
+    activity: {}
   }),
   created() {
     this.initialize();
   },
   methods: {
     async initialize() {
+      const activity = await this.$axios.$get(
+        `/api/activity/${this.$route.params.id}`
+      );
+      this.activity = activity;
       const places = await this.$axios.$get(
         `/api/place/${this.$route.params.id}`
       );

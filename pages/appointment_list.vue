@@ -56,6 +56,7 @@
 </template>
 <script>
 export default {
+  props: ["activity", "places"],
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -100,7 +101,7 @@ export default {
 
   methods: {
     async initialize() {
-      const products = await this.$axios.$get("/api/appointment");
+      const products = await this.$axios.$get(`/api/appointment?all=true`);
       this.products = products;
     },
 

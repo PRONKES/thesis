@@ -145,7 +145,7 @@ export default {
     async initialize() {
       const activities = await this.$axios.$get("/api/activity");
       this.activities = activities;
-      console.log(activities);
+      console.log({activities});
     },
 
     async validate() {

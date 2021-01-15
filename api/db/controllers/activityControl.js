@@ -7,6 +7,9 @@ module.exports = {
   read: callbacks => {
     Activity.find().exec(callbacks);
   },
+  readOne: (id, callbacks) => {
+    Activity.findOne({_id:id}).exec(callbacks);
+  },
   update: (id, obj, callback) => {
     Activity.findOneAndUpdate({ _id: id }, obj, callback);
   },

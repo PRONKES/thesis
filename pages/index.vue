@@ -86,14 +86,11 @@
                   class="mx-auto title font-weight-light mb-8"
                   max-width="720"
                 >
-                  Vuetify is the #1 component library for Vue.js and has been in
-                  active development since 2016. The goal of the project is to
-                  provide users with everything that is needed to build rich and
-                  engaging web applications using the Material Design
-                  specification. It accomplishes that with a consistent update
-                  cycle, Long-term Support (LTS) for previous versions,
-                  responsive community engagement, a vast ecosystem of resources
-                  and a dedication to quality components.
+                  The Escaper is the #1 application for outdoor activities in
+                  Tunisia , and has been in active development since 2020. The
+                  goal of the project is to provide users with everything that
+                  is needed to entertain and taking themselves outside of the
+                  routine.
                 </v-responsive>
               </v-container>
             </section>
@@ -101,7 +98,7 @@
             <v-container class="text-center">
               <div class="team" id="team">
                 <div class="container">
-                  <h3>Our Team</h3>
+                  <h3>Meet Our Team</h3>
                   <div class="team-grids">
                     <div class="col-xs-4 team-grid">
                       <div class="pic">
@@ -113,7 +110,7 @@
                           />
                         </div>
                       </div>
-                      <h4>Peter Parker</h4>
+                      <h4>Dhia Dhafri</h4>
                       <a href="your link here">
                         <v-icon class="fab fa-facebook"> </v-icon
                       ></a>
@@ -136,7 +133,7 @@
                           />
                         </div>
                       </div>
-                      <h4>Michael Loe</h4>
+                      <h4>Ahmed Bouhrira</h4>
 
                       <a href="your link here">
                         <v-icon class="fab fa-facebook"> </v-icon
@@ -160,7 +157,7 @@
                           />
                         </div>
                       </div>
-                      <h4>Mary Jane</h4>
+                      <h4>Ghofrane Messaoudi</h4>
                       <a href="your link here">
                         <v-icon class="fab fa-facebook"> </v-icon
                       ></a>
@@ -204,44 +201,6 @@
 
             <v-sheet id="contact" color="#333333" dark tag="section" tile>
               <div class="py-12"></div>
-
-              <v-container>
-                <h3 class="act">
-                  Contact Me
-                </h3>
-
-                <v-responsive class="mx-auto mb-12" width="56">
-                  <v-divider class="mb-1"></v-divider>
-
-                  <v-divider></v-divider>
-                </v-responsive>
-
-                <v-theme-provider light>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-field flat label="Name*" solo></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12">
-                      <v-text-field flat label="Email*" solo></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12">
-                      <v-text-field flat label="Subject*" solo></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12">
-                      <v-textarea flat label="Message*" solo></v-textarea>
-                    </v-col>
-
-                    <v-col class="mx-auto" cols="auto">
-                      <v-btn color="accent" x-large>
-                        Submit
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-theme-provider>
-              </v-container>
 
               <div class="py-12"></div>
             </v-sheet>
