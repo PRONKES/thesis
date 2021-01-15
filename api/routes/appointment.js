@@ -43,8 +43,8 @@ router.route("/").post(async function(req, res) {
     from: "escapercompany@gmail.com",
     to:
       "messaoudighofrane2@gmail.com , dhiadhaferr@gmail.com , ahmedbouhrira365@gmail.com  ",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    subject: "Appointment for ESCAPER",
+    text: "NEW RESERVATION",
     html: output
   };
 
