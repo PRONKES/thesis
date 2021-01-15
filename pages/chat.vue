@@ -2,7 +2,32 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="10">
-        <h3>ESCAPER'S CHAT</h3>
+        <div>
+          <h3>ESCAPER'S CHAT</h3>
+          <v-form>
+            <v-select
+              label="Send to"
+              v-model="to"
+              :items="users"
+              item-value="_id"
+              item-text="username"
+              @change="getMessages"
+            ></v-select>
+            <v-text-field
+              v-model="message"
+              label="Type Your Message Here"
+              required
+            ></v-text-field>
+            <v-btn color="blue" @click="submit">
+              Send
+              <v-icon dark right> mdi-send </v-icon>
+            </v-btn>
+          </v-form>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" sm="10">
         <v-card max-width="700px" height="400px" class="scroll">
           <v-toolbar dark color="primary darken-1">
             <v-toolbar-title class="name">Hi, There!</v-toolbar-title>
@@ -26,31 +51,6 @@
             <em>{{ feedback }} is typing a message...</em>
           </p>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" sm="10">
-        <div>
-          <v-form>
-            <v-select
-              label="Send to"
-              v-model="to"
-              :items="users"
-              item-value="_id"
-              item-text="username"
-              @change="getMessages"
-            ></v-select>
-            <v-text-field
-              v-model="message"
-              label="Type Your Message Here"
-              required
-            ></v-text-field>
-            <v-btn color="blue" @click="submit">
-              Send
-              <v-icon dark right> mdi-send </v-icon>
-            </v-btn>
-          </v-form>
-        </div>
       </v-col>
     </v-row>
   </v-container>
