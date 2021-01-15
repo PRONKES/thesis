@@ -1,19 +1,23 @@
 <template>
-  <v-container>
+  <v-container pa-12>
+    <h3>ESCAPER'S CHAT</h3>
     <v-row justify="center">
       <v-col cols="12" sm="10">
-        <v-card max-width="500" height="400px" class="scroll">
+        <v-card max-width="700px" height="500px" class="scroll">
           <v-toolbar dark color="primary darken-1">
-            <v-toolbar-title class="name">Chat</v-toolbar-title>
+            <v-toolbar-title class="name">Hi, There!</v-toolbar-title>
           </v-toolbar>
           <v-list id="messages" dense v-for="(msg, i) in messages" :key="i">
-            <div>
+            <div class="msg">
               <v-list-item>
                 <v-list-item-content>
-                  <v-list-item-title class="name">{{
-                    msg.from.username
-                  }}</v-list-item-title>
-                  <v-list-item-subtitle>{{ msg.message }}</v-list-item-subtitle>
+                  <v-list-item-title id="sender"
+                    >{{ msg.from.username }}
+                  </v-list-item-title>
+                  <br />
+                  <v-list-item-subtitle id="rec">{{
+                    msg.message
+                  }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </div>
@@ -34,7 +38,7 @@
             ></v-select>
             <v-text-field
               v-model="message"
-              label="Send Your Message Here"
+              label="Type Your Message Here"
               required
             ></v-text-field>
             <v-btn color="blue" @click="submit">
@@ -72,13 +76,11 @@ export default {
   async mounted() {
     this.socket = io.connect();
     this.socket.on("connect", async () => {
-    
       let user = await this.$axios.$put(`/api/users`, {
         socket: this.socket.id
       });
     });
     this.socket.on("update", async data => {
-     
       this.getMessages();
     });
     this.socket.on("typing", data => {
@@ -124,19 +126,41 @@ export default {
 };
 </script>
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
 .scroll {
-  left: 250px;
+  left: 200px;
   overflow-y: auto;
 }
-
-.name {
-  font-family: "Anton", sans-serif;
+h3 {
+  font-family: "Englebert", sans-serif;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  margin: 40px 0 20px;
+  text-align: center;
 }
 .test {
   position: relative;
-  width: 340px;
-  left: 250px;
+  top: 50px;
+  width: 500px;
+  left: 290px;
+  height: 500px;
+}
+.msg {
+  height: 80px;
+  background-color: rgb(250, 248, 248);
+  border-radius: 25px;
+}
+#sender {
+  font-size: 20px;
+  color: black;
+  font-family: "Englebert", sans-serif;
+}
+.name {
+  font-family: "Englebert", sans-serif;
+}
+#rec {
+  color: rgb(34, 32, 32);
 }
 </style>

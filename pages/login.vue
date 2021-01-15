@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container pa-12 fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
         <h1 class="text">Sign In</h1>
