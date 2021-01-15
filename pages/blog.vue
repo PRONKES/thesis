@@ -50,8 +50,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-container justify="center">
-      <div v-for="(blog, index) in blogs" :key="index" class="row">
+    <v-container>
+      <v-col v-for="(blog, index) in blogs" :key="index" class="row">
         <v-card class="rounded-lg">
           <h1>{{ blog.title }}</h1>
 
@@ -77,7 +77,7 @@
             </v-btn>
           </div>
         </v-card>
-      </div>
+      </v-col>
     </v-container>
   </div>
 </template>
@@ -133,7 +133,14 @@ export default {
     async validate() {
       const fb = new FormData();
 
-      fb.append("image", this.selectedFile, this.selectedFile.name);
+      if (this.selectedFile !== null) {
+        fb.append(
+          "image",
+          this.selectedFile,
+          this.selectedFile.name,
+          this.editedItem.image
+        );
+      }
 
       fb.append("body", this.editedItem.body);
       fb.append("title", this.editedItem.title);
@@ -225,5 +232,8 @@ h1 {
 }
 .div {
   background-color: #212121;
+}
+.mb-2 {
+  left: 180px;
 }
 </style>

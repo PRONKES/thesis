@@ -38,6 +38,13 @@ router.route("/").get(function(req, res) {
 });
 
 router.route("/:id").put(function(req, res) {
+  const obj = {
+    description: req.body.description,
+    price: req.body.price
+  };
+  if (req.file !== undefined) {
+    obj.image = req.file.originalname;
+  }
   blogControle.update(req.params.id, req.body, (err, data) => {
     if (err) {
       throw err;
@@ -47,7 +54,6 @@ router.route("/:id").put(function(req, res) {
 });
 router.route("/:id").delete((req, res) => {
   blogControle.delete(req.params.id, (err, data) => {
-    
     if (err) {
       throw err;
     }

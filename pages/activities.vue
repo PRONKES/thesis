@@ -145,18 +145,19 @@ export default {
     async initialize() {
       const activities = await this.$axios.$get("/api/activity");
       this.activities = activities;
-      console.log({activities});
+      console.log({ activities });
     },
 
     async validate() {
       const fb = new FormData();
-
-      fb.append(
-        "image",
-        this.selectedFile,
-        this.selectedFile.name,
-        this.editedItem.image
-      );
+      if (this.selectedFile !== null) {
+        fb.append(
+          "image",
+          this.selectedFile,
+          this.selectedFile.name,
+          this.editedItem.image
+        );
+      }
 
       fb.append("description", this.editedItem.description);
       fb.append("price", this.editedItem.price);
