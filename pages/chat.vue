@@ -1,9 +1,9 @@
 <template>
-  <v-container pa-12>
-    <h3>ESCAPER'S CHAT</h3>
+  <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="10">
-        <v-card max-width="700px" height="500px" class="scroll">
+        <h3>ESCAPER'S CHAT</h3>
+        <v-card max-width="700px" height="400px" class="scroll">
           <v-toolbar dark color="primary darken-1">
             <v-toolbar-title class="name">Hi, There!</v-toolbar-title>
           </v-toolbar>
@@ -22,11 +22,15 @@
               </v-list-item>
             </div>
           </v-list>
+          <p v-if="feedback !== ''">
+            <em>{{ feedback }} is typing a message...</em>
+          </p>
         </v-card>
-        <p v-if="feedback !== ''">
-          <em>{{ feedback }} is typing a message...</em>
-        </p>
-        <div class="test">
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" sm="10">
+        <div>
           <v-form>
             <v-select
               label="Send to"
@@ -62,7 +66,7 @@ export default {
   mixins: [validationMixin],
 
   validations: {
-    message: { required }
+    message: { required },
   },
 
   data: () => ({
@@ -71,26 +75,26 @@ export default {
     message: "",
     to: "",
     socket: "",
-    feedback: ""
+    feedback: "",
   }),
   async mounted() {
     this.socket = io.connect();
     this.socket.on("connect", async () => {
       let user = await this.$axios.$put(`/api/users`, {
-        socket: this.socket.id
+        socket: this.socket.id,
       });
     });
-    this.socket.on("update", async data => {
+    this.socket.on("update", async (data) => {
       this.getMessages();
     });
-    this.socket.on("typing", data => {
+    this.socket.on("typing", (data) => {
       this.feedback = data;
     });
     this.initialize();
   },
 
   computed: {
-    ...mapState(["user"])
+    ...mapState(["user"]),
   },
   methods: {
     async initialize() {
@@ -103,13 +107,13 @@ export default {
       let chatObject = {
         from: this.user._id,
         message: this.message,
-        to: this.to
+        to: this.to,
       };
       rtn = await this.$axios.$post("/api/chats", chatObject);
       this.getMessages();
       let chat = this.socket.emit("update", {
         from: this.user._id,
-        to: this.to
+        to: this.to,
       });
       this.message = "";
     },
@@ -121,15 +125,14 @@ export default {
     },
     typing() {
       this.socket.emit("typing", this.to);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
 .scroll {
-  left: 200px;
   overflow-y: auto;
 }
 h3 {
