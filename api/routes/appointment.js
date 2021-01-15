@@ -60,7 +60,7 @@ router.route("/").post(async function(req, res) {
 
 
 router.route("/").get(function(req, res) {
-  appointmentControle.read(req,(err, data) => {
+  appointmentControle.read(req.user._id,(err, data) => {
     if (err) {
       throw err;
     }

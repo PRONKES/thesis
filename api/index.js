@@ -54,6 +54,13 @@ routers.use(
 
 routers.use(passport.initialize());
 routers.use(passport.session());
+var checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return { username: false };
+  }
+};
 routers.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
     return res.send({
@@ -133,7 +140,7 @@ routers.use("/products", products);
 var blogs = require("./routes/blogs.js");
 routers.use("/blogs", blogs);
 var appointment = require("./routes/appointment.js");
-routers.use("/appointment", appointment);
+routers.use("/appointment", checkAuthenticated, appointment);
 
 var place = require("./routes/place.js");
 routers.use("/place", place);
@@ -148,13 +155,7 @@ routers.use("/activity", activity);
 const chats = require("./routes/chats.js");
 routers.use("/chats", chats);
 
-const checkAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return { username: false };
-  }
-};
+
 
 var users = require("./routes/users.js");
 routers.use("/users", checkAuthenticated, users);

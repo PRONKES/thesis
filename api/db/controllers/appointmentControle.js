@@ -17,7 +17,7 @@ module.exports = {
     app.save(callbacks);
   },
   read: (user, callbacks) => {
-    Appointment.find({ user }).exec(callbacks);
+    Appointment.find({ user }).populate("activity","image description").populate("place","title").exec(callbacks);
   },
   delete: (id, callback) => {
     Appointment.findByIdAndRemove({ _id: id }).exec(callback);
