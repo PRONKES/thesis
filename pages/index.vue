@@ -87,7 +87,7 @@
                   max-width="720"
                 >
                   The Escaper is the #1 application for outdoor activities in
-                  Tunisia , and has been in active development since 2020. The
+                  Tunisia , and has been in active development since 2021. The
                   goal of the project is to provide users with everything that
                   is needed to entertain and taking themselves outside of the
                   routine.
@@ -104,18 +104,44 @@
                       <div class="pic">
                         <div class="stack twisted">
                           <img
-                            src="https://www.revolution.com/wp-content/uploads/2015/03/Meredith_Serious.jpg"
+                            src="https://scontent-pmo1-1.xx.fbcdn.net/v/t1.0-9/138553744_4017817151581997_5639687606520287533_n.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_ohc=6ya6fYKE7MwAX99jogA&_nc_ht=scontent-pmo1-1.xx&oh=62fab039bee9a4d2ed17bbb411fda8b3&oe=6026EE75"
                             alt=" "
                             class="img-responsive"
                           />
                         </div>
                       </div>
                       <h4>Dhia Dhafri</h4>
-                      <a href="your link here">
+                      <a href="https://www.facebook.com/dhia.dhafri">
                         <v-icon class="fab fa-facebook"> </v-icon
                       ></a>
 
-                      <a href="your link here">
+                      <a href="https://github.com/DhiaDhafer">
+                        <v-icon class="fab fa-github"> </v-icon>
+                      </a>
+
+                      <a
+                        href="https://www.linkedin.com/in/dhia-dhafri-90b3b419b/"
+                      >
+                        <v-icon class="fab fa-linkedin"> </v-icon>
+                      </a>
+                    </div>
+                    <div class="col-xs-4 team-grid">
+                      <div class="pic">
+                        <div class="stack twisted">
+                          <img
+                            src="https://scontent-pmo1-1.xx.fbcdn.net/v/t1.0-9/78605099_2395547804030240_5537050006684434432_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_ohc=5tBI0-cXLrAAX9SAI3d&_nc_ht=scontent-pmo1-1.xx&oh=47f3541114e90c129930d70c7156febd&oe=6028BD43"
+                            alt=" "
+                            class="img-responsive"
+                          />
+                        </div>
+                      </div>
+                      <h4>Ghofrane Messaoudi</h4>
+
+                      <a href="https://www.facebook.com/ghof.rane.1654">
+                        <v-icon class="fab fa-facebook"> </v-icon
+                      ></a>
+
+                      <a href="https://github.com/ghofranemessaoudi">
                         <v-icon class="fab fa-github"> </v-icon>
                       </a>
 
@@ -134,39 +160,17 @@
                         </div>
                       </div>
                       <h4>Ahmed Bouhrira</h4>
-
-                      <a href="your link here">
+                      <a href="https://www.facebook.com/dkmu365/">
                         <v-icon class="fab fa-facebook"> </v-icon
                       ></a>
 
-                      <a href="your link here">
+                      <a href="https://github.com/Ahmed-Bouhrira">
                         <v-icon class="fab fa-github"> </v-icon>
                       </a>
 
-                      <a href="your link here">
-                        <v-icon class="fab fa-linkedin"> </v-icon>
-                      </a>
-                    </div>
-                    <div class="col-xs-4 team-grid">
-                      <div class="pic">
-                        <div class="stack twisted">
-                          <img
-                            src="https://www.revolution.com/wp-content/uploads/2015/03/Meredith_Serious.jpg"
-                            alt=" "
-                            class="img-responsive"
-                          />
-                        </div>
-                      </div>
-                      <h4>Ghofrane Messaoudi</h4>
-                      <a href="your link here">
-                        <v-icon class="fab fa-facebook"> </v-icon
-                      ></a>
-
-                      <a href="your link here">
-                        <v-icon class="fab fa-github"> </v-icon>
-                      </a>
-
-                      <a href="your link here">
+                      <a
+                        href="https://www.linkedin.com/in/ahmed-bouhrira-6bb2131a9/"
+                      >
                         <v-icon class="fab fa-linkedin"> </v-icon>
                       </a>
                     </div>
@@ -175,13 +179,12 @@
                   </div>
                 </div>
               </div>
-              <div></div>
             </v-container>
 
             <section id="stats">
               <v-parallax
                 :height="$vuetify.breakpoint.smAndDown ? 700 : 500"
-                src="https://images.unsplash.com/photo-1444850264539-b1371b0d28e1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1267&q=80"
+                src="https://images.unsplash.com/photo-1476522465286-b5b94c729d2a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80"
               >
                 <v-container fill-height>
                   <v-row class="mx-auto">
@@ -198,20 +201,14 @@
                 </v-container>
               </v-parallax>
             </section>
-
-            <v-sheet id="contact" color="#333333" dark tag="section" tile>
-              <div class="py-12"></div>
-
-              <div class="py-12"></div>
-            </v-sheet>
           </v-main>
 
           <v-footer class="justify-center" color="#292929" height="100">
             <div
               class="title font-weight-light grey--text text--lighten-1 text-center"
             >
-              &copy; {{ new Date().getFullYear() }} — Vuetify, LLC — Made with
-              💜 by John Leider
+              &copy; {{ new Date().getFullYear() }} — The Escaper — Made with 💜
+              by Pronkes Team
             </div>
           </v-footer>
         </v-app>
