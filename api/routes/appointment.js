@@ -4,14 +4,16 @@ var placeControle = require("../db/controllers/placeControle.js");
 const exphbs = require("express-handlebars");
 var smtpTransport = require("nodemailer-smtp-transport");
 const nodemailer = require("nodemailer");
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
 var router = express.Router();
+const stripe = require('stripe')(stripeSecretKey)
 // const app = express()
 
 // app.engine('handlebars', exphbs());
 // app.set('view engine', 'handlebars');
 
 router.route("/").post(async function(req, res) {
-  debugger
   appointmentControle.create({...req.body,user:req.user.id}, (err, data) => {
     if (err) {
       throw err;
@@ -67,9 +69,23 @@ router.route("/").get(function(req, res) {
     res.send(data);
   });
 });
-
+router.route("/:id").put(async function(req, res) {
+  debugger
+  try{
+    let appointment = await appointmentControle.readOne(req.params.id)
+    await stripe.charges.create({
+      amount: appointment.price * 100,
+      source: req.body.stripeTokenId,
+      currency: 'usd'
+    })
+    await appointmentControle.update(req.params.id,{payed:true})
+    res.send({ success: true })
+  } catch(err){
+    res.status(500).send({ success: false })
+  }
+  
+});
 router.route("/:id").delete((req, res) => {
-  console.log(req.params.id);
   appointmentControle.delete(req.params.id, (err, data) => {
     if (err) {
       throw err;

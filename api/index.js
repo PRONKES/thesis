@@ -63,11 +63,12 @@ var checkAuthenticated = (req, res, next) => {
 };
 routers.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
-    return res.send({
-      username: req.user.username,
-      _id: req.user._id,
-      type: req.user.type
-    });
+    let fields = ["_id", "username", "email", "type", "image"];
+    let user = fields.reduce((acc, cv) => {
+      acc[cv] = req.user[cv];
+      return acc;
+    }, {});
+    return res.send(user);
   } else {
     return res.send({ username: false });
   }
@@ -154,8 +155,6 @@ routers.use("/activity", activity);
 
 const chats = require("./routes/chats.js");
 routers.use("/chats", chats);
-
-
 
 var users = require("./routes/users.js");
 routers.use("/users", checkAuthenticated, users);
