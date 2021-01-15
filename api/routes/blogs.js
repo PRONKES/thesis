@@ -9,20 +9,17 @@ var storage = multer.diskStorage({
     cb(null, "./api/uploads");
   },
   filename: function(req, file, cb) {
-    console.log(file);
     cb(null, file.originalname);
   }
 });
 
 var upload = multer({ storage });
 router.post("/", upload.single("image"), function(req, res) {
-  console.log("user", req.user);
   const obj = {
     title: req.body.title,
     image: req.file.originalname,
     body: req.body.body
   };
-  console.log("obj", obj);
   blogControle.create(obj, (err, data) => {
     if (err) {
       throw err;
@@ -32,7 +29,6 @@ router.post("/", upload.single("image"), function(req, res) {
 });
 
 router.route("/").get(function(req, res) {
-  console.log("user", req.user, req.isAuthenticated());
   blogControle.read((err, data) => {
     if (err) {
       throw err;
@@ -42,7 +38,6 @@ router.route("/").get(function(req, res) {
 });
 
 router.route("/:id").put(function(req, res) {
-  console.log(req.body);
   blogControle.update(req.params.id, req.body, (err, data) => {
     if (err) {
       throw err;
@@ -51,7 +46,6 @@ router.route("/:id").put(function(req, res) {
   });
 });
 router.route("/:id").delete((req, res) => {
-  console.log(req.params.id);
   blogControle.delete(req.params.id, (err, data) => {
     
     if (err) {

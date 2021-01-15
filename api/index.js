@@ -14,7 +14,7 @@ const routers = express.Router();
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://dhiadhafer:dhia123@cluster0.4vcxr.mongodb.net/esciper?retryWrites=true&w=majority",
+  process.env.SERVER,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -54,14 +54,21 @@ routers.use(
 
 routers.use(passport.initialize());
 routers.use(passport.session());
+var checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return { username: false };
+  }
+};
 routers.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
-
-    return res.send({
-      username: req.user.username,
-      _id: req.user._id,
-      type: req.user.type
-    });
+    let fields = ["_id", "username", "email", "type", "image"];
+    let user = fields.reduce((acc, cv) => {
+      acc[cv] = req.user[cv];
+      return acc;
+    }, {});
+    return res.send(user);
   } else {
     return res.send({ username: false });
   }
@@ -70,7 +77,6 @@ routers.get("/user", (req, res) => {
 routers.post("/login", passport.authenticate("local"), function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-  console.log("req.user", { user: req.user });
   res.json({ user: req.user });
 });
 
@@ -135,10 +141,10 @@ routers.use("/products", products);
 var blogs = require("./routes/blogs.js");
 routers.use("/blogs", blogs);
 var appointment = require("./routes/appointment.js");
-routers.use("/appointment", appointment);
+routers.use("/appointment", checkAuthenticated, appointment);
 
-var place = require("./routes/place.js")
-routers.use("/place",place)
+var place = require("./routes/place.js");
+routers.use("/place", place);
 
 routers.get("/images/:img", (req, res) => {
   res.sendFile(path.join(__dirname, "uploads", req.params.img));
@@ -150,16 +156,8 @@ routers.use("/activity", activity);
 const chats = require("./routes/chats.js");
 routers.use("/chats", chats);
 
-const checkAuthenticated = (req, res,next) => {
-if(req.isAuthenticated()){
-  return next()
-}else{
-  return { username: false }
-}
-}
-
 var users = require("./routes/users.js");
-routers.use("/users",checkAuthenticated, users);
+routers.use("/users", checkAuthenticated, users);
 // View engine setup
 
 app.use("/api", routers);

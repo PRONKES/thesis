@@ -11,7 +11,6 @@
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
-   
           <v-card>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
@@ -42,8 +41,8 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    
-    <template v-slot:item.actions="{item}">
+  
+    <template v-slot:item.actions="{ item }">
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
     <template v-slot:no-data>
@@ -53,6 +52,7 @@
 </template>
 <script>
 export default {
+  props: ["activity", "places"],
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -60,26 +60,26 @@ export default {
       { text: "Appointment Date", value: "appointmentDate" },
       { text: "Place", value: "place" },
       { text: "Number Of People", value: "numberOfPeople" },
-      { text: "Delete", value: "actions", sortable: false },
+      { text: "Delete", value: "actions", sortable: false }
     ],
     products: [],
     editedIndex: -1,
     editedItem: {
       appointmentDate: "",
       place: "",
-      numberOfPeople: 0,
+      numberOfPeople: 0
     },
     defaultItem: {
-     appointmentDate: "",
+      appointmentDate: "",
       place: "",
-      numberOfPeople: 0,
-    },
+      numberOfPeople: 0
+    }
   }),
 
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    },
+    }
   },
 
   watch: {
@@ -88,7 +88,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    },
+    }
   },
 
   created() {
@@ -97,7 +97,7 @@ export default {
 
   methods: {
     async initialize() {
-      const products = await this.$axios.$get("/api/appointment");
+      const products = await this.$axios.$get(`/api/appointment?all=true`);
       this.products = products;
     },
 
@@ -133,9 +133,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-    },
-
-
-  },
+    }
+  }
 };
 </script>

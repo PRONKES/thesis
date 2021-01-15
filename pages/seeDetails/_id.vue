@@ -19,7 +19,7 @@
         </l-map>
       </no-ssr>
     </div>
-    <appointment />
+    <appointment :activity="activity" :places="places" />
   </div>
 </template>
 <script>
@@ -28,13 +28,18 @@ export default {
   components: { appointment },
   data: () => ({
     places: [],
-    customText: ""
+    customText: "",
+    activity: {}
   }),
   created() {
     this.initialize();
   },
   methods: {
     async initialize() {
+      const activity = await this.$axios.$get(
+        `/api/activity/${this.$route.params.id}`
+      );
+      this.activity = activity
       const places = await this.$axios.$get(
         `/api/place/${this.$route.params.id}`
       );
@@ -42,8 +47,8 @@ export default {
     },
     getLatLng({ lat, lng }) {
       return [lat, lng];
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

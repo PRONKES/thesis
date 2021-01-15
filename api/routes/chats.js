@@ -19,7 +19,6 @@ router.route("/").post(function(req, res) {
 });
 
 router.route("/").get(function(req, res) {
-  console.log("req.query", req.query);
   let obj = {
     user1: req.user._id,
     user2: req.query.user2
