@@ -20,8 +20,17 @@ router.route("/").get(function(req, res) {
     res.send(data);
   });
 });
+router.route("/").put(function(req, res) {
+  console.log(req.body);
+  userControle.update(req.user.id, req.body, (err, data) => {
+    if (err) {
+      throw err;
+    }
+    res.send(data);
+  });
+});
 
-router.route("/").put(upload.single("image"), function(req, res) {
+router.route("/image").put(upload.single("image"), function(req, res) {
   userControle.update(
     req.user.id,
     { image: req.file.originalname },

@@ -12,8 +12,6 @@
           class="pa-8"
         >
           <v-row justify="center">
-            
-            </v-img>
             <v-avatar
               class="my-2 ml-8"
               size="100"
@@ -120,11 +118,7 @@ export default {
     appointment: {},
   }),
   mounted() {
-    if (!this.user.username) {
-      this.$router.push("/login");
-    } else {
-      this.initialize();
-    }
+    this.initialize();
   },
   computed: {
     ...mapState(["user"]),
@@ -158,7 +152,7 @@ export default {
       this.selectedFile = event.target.files[0];
       const fb = new FormData();
       fb.append("image", this.selectedFile, this.selectedFile.name);
-      await axios.put("/api/users", fb, {
+      await axios.put("/api/users/image", fb, {
         onUploadProgress: (uploadEvent) => {
           console.log(
             "upload Progress" +

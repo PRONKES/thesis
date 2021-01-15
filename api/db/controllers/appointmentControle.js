@@ -1,13 +1,4 @@
 const mongoose = require("mongoose");
-// require("dotenv").config();
-// mongoose.connect(
-//   process.env.SERVER,
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   },
-//   { useMongoClient: true }
-// );
 const { Appointment } = require("../models/appointmentModel");
 var { Activity } = require("../models/activityModel");
 
@@ -27,12 +18,13 @@ let controler = {
     app.save(callbacks);
   },
   read: (user, callbacks) => {
-    Appointment.find({ user })
+    let obj = user ? { user } : {};
+    Appointment.find(obj)
       .populate("activity", "image description")
       .populate("place", "title")
       .exec(callbacks);
   },
-  readOne: async (id) => {
+  readOne: async id => {
     let appointment = await Appointment.findOne({
       _id: id
     }).exec();
