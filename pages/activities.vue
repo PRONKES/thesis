@@ -163,11 +163,20 @@ export default {
 
       if (this.editedIndex > -1) {
         Object.assign(this.activities[this.editedIndex], this.editedItem);
-        await this.$axios.$put(
-          `/api/activity/${this.editedItem._id}`,
-          this.editedItem
-        );
-        await this.initialize();
+        axios
+          .put(`/api/activity/${this.editedItem._id}`, fb, {
+            onUploadProgress: uploadEvent => {
+              console.log(
+                "upload Progress" +
+                  Math.round((uploadEvent.loaded / uploadEvent.total) * 100) +
+                  "%"
+              );
+            }
+          })
+          .then(res => {
+            this.initialize();
+          })
+          .then(() => this.close());
       } else {
         axios
           .post("/api/activity", fb, {
@@ -194,16 +203,13 @@ export default {
       });
     },
     editItem(activity) {
-      console.log(activity);
       this.editedIndex = this.activities.indexOf(activity);
       this.editedItem = Object.assign({}, activity);
       this.dialog = true;
     },
     async deleteItem(activity) {
-      console.log(activity);
       await this.$axios.$delete(`/api/activity/${activity._id}`);
       this.initialize();
-      console.log(activity);
       this.editedIndex = this.activities.indexOf(activity);
       this.editedItem = Object.assign({}, activity);
       this.dialogDelete = true;
