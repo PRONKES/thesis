@@ -41,7 +41,7 @@
     </v-row>
     <div class="h1 text-center font-weight-bold font-italic mt-2">RESERVATIONS</div>
     <v-divider></v-divider>
-    <v-row align-content="stretch" justify="center">
+    <v-row v-if="appointments.length>0" align-content="stretch" justify="center">
       <v-col
         v-for="(appointment, index) in appointments"
         :key="index"
@@ -100,6 +100,13 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-else>
+      <v-col>
+        <div class="Subtitle 1 text-center font-weight-bold font-italic mt-2">
+          No Reservation Available
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -113,7 +120,11 @@ export default {
     appointment: {},
   }),
   mounted() {
-    this.initialize();
+    if (!this.user.username) {
+      this.$router.push("/login");
+    } else {
+      this.initialize();
+    }
   },
   computed: {
     ...mapState(["user"]),

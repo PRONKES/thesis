@@ -124,6 +124,7 @@ export default {
       };
 
       let rtn = await this.$axios.$post("/api/appointment", appointment);
+      this.$router.push("/profile");
     },
   },
 };
