@@ -64,26 +64,26 @@ export default {
       { text: "Appointment Date", value: "appointmentDate" },
       { text: "Place", value: "place" },
       { text: "Number Of People", value: "numberOfPeople" },
-      { text: "Delete", value: "actions", sortable: false }
+      { text: "Delete", value: "actions", sortable: false },
     ],
     products: [],
     editedIndex: -1,
     editedItem: {
       appointmentDate: "",
       place: "",
-      numberOfPeople: 0
+      numberOfPeople: 0,
     },
     defaultItem: {
       appointmentDate: "",
       place: "",
-      numberOfPeople: 0
-    }
+      numberOfPeople: 0,
+    },
   }),
 
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    }
+    },
   },
 
   watch: {
@@ -92,7 +92,7 @@ export default {
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
+    },
   },
 
   created() {
@@ -102,7 +102,10 @@ export default {
   methods: {
     async initialize() {
       const products = await this.$axios.$get(`/api/appointment?all=true`);
-      this.products = products;
+      this.products = products.map((cv) => ({
+        ...cv,
+        place: cv.place.title,
+      }));
     },
 
     editItem(item) {
@@ -137,7 +140,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
-    }
-  }
+    },
+  },
 };
 </script>
