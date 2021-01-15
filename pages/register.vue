@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container pa-12 fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
         <h1 class="text">Sign Up</h1>
@@ -82,6 +82,7 @@ export default {
         } else {
           this.changeUser({ username: false });
         }
+        this.$router.push("/profile");
       }
     },
     reset() {

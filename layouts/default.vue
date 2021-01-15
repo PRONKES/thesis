@@ -37,12 +37,8 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn text to="/register" v-if="user.username === false">
-        Signup
-      </v-btn>
-      <v-btn text to="login" v-if="user.username === false">
-        Login
-      </v-btn>
+      <v-btn text to="/register" v-if="user.username === false"> Signup </v-btn>
+      <v-btn text to="login" v-if="user.username === false"> Login </v-btn>
       <v-menu
         v-if="user.username !== false"
         v-model="menu"
@@ -80,15 +76,13 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="primary" text @click="logout">
-              Logout
-            </v-btn>
+            <v-btn color="primary" text @click="logout"> Logout </v-btn>
           </v-card-actions>
         </v-card>
       </v-menu>
     </v-app-bar>
-    <v-main class="pa-6">
-     <nuxt />
+    <v-main class="main">
+      <nuxt />
     </v-main>
   </v-app>
 </template>
@@ -106,7 +100,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "THE ESCAPER"
+      title: "THE ESCAPER",
     };
   },
   created() {
@@ -121,58 +115,58 @@ export default {
           {
             icon: "mdi-apps",
             title: "Home",
-            to: "/"
-          }
+            to: "/",
+          },
         ];
       } else if (this.user.type === "admin") {
         return [
           {
             icon: "mdi-apps",
             title: "Home",
-            to: "/"
+            to: "/",
           },
           {
             icon: "mdi mdi-clipboard-text",
             title: "Blog",
-            to: "/blog"
+            to: "/blog",
           },
           {
             icon: "mdi mdi-clipboard-text",
             title: "Chat",
-            to: "/chat"
+            to: "/chat",
           },
           {
             icon: "mdi mdi-clipboard-text",
             title: "Reservation List",
-            to: "/appointment_list"
+            to: "/appointment_list",
           },
           {
             icon: "mdi mdi-clipboard-text",
             title: "Add Services",
-            to: "/activities"
-          }
+            to: "/activities",
+          },
         ];
       } else {
         return [
           {
             icon: "mdi-apps",
             title: "Home",
-            to: "/"
+            to: "/",
           },
           {
             icon: "mdi mdi-clipboard-text",
             title: "Blog",
-            to: "/blog"
+            to: "/blog",
           },
 
           {
             icon: "mdi mdi-clipboard-text",
             title: "Chat",
-            to: "/chat"
-          }
+            to: "/chat",
+          },
         ];
       }
-    }
+    },
   },
   methods: {
     ...mapActions(["changeUser"]),
@@ -189,7 +183,14 @@ export default {
       await this.$axios.$delete(`/api/logout`);
       await this.initialize();
       this.$router.push("/login");
-    }
-  }
+    },
+  },
 };
 </script>
+<style scoped>
+.main {
+  padding-top: 100px;
+  padding-left:20px ;
+  padding-right: 20px;
+}
+</style>

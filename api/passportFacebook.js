@@ -10,7 +10,6 @@ function initialize(passport) {
         callbackURL: "/api/auth/facebook/redirect"
       },
       function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
         const { email, first_name, last_name } = profile._json;
         new User({
           email,

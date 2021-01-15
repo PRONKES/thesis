@@ -22,7 +22,6 @@ router.route("/").get(function(req, res) {
 });
 
 router.route("/:id").put(function(req, res) {
-  console.log(req.body);
   productControle.update(req.params.id, req.body, (err, data) => {
     if (err) {
       throw err;
@@ -31,7 +30,6 @@ router.route("/:id").put(function(req, res) {
   });
 });
 router.route("/:id").delete((req, res) => {
-  console.log(req.params.id);
   productControle.delete(req.params.id, (err, data) => {
     if (err) {
       throw err;

@@ -1,13 +1,17 @@
 <template>
   <div>
-    <div class="header">
-      <h2>THE ESCAPER'S BLOG</h2>
-    </div>
+    <h2>THE ESCAPER'S BLOG</h2>
 
     <v-dialog v-model="dialog" max-width="500px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-          New Blog
+        <v-btn
+          color="deep-purple accent-1"
+          dark
+          class="mb-2"
+          v-bind="attrs"
+          v-on="on"
+        >
+          Add Your Post
         </v-btn>
       </template>
       <v-card>
@@ -45,28 +49,33 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-container>
+    <v-container justify="center">
       <div v-for="(blog, index) in blogs" :key="index" class="row">
-        <div class="leftcolumn">
-          <div class="card">
-            <h1>{{ blog.title }}</h1>
+        <v-card class="rounded-lg">
+          <h1>{{ blog.title }}</h1>
 
-            <div class="div">
-              <v-img class="img" :src="`/api/images/${blog.image}`"> </v-img>
-            </div>
+          <div>
+            <v-img class="img" :src="`/api/images/${blog.image}`"> </v-img>
+          </div>
 
-            <div class="div">
-              <p>{{ blog.body }}</p>
-            </div>
+          <div class="div">
+            <p>{{ blog.body }}</p>
+
             <v-btn color="warning" text @click="editItem(blog)">
+              <v-icon left>
+                mdi-pencil
+              </v-icon>
               edit
             </v-btn>
 
-            <v-btn color="danger" text @click="deleteItem(blog)">
+            <v-btn color="warning" text @click="deleteItem(blog)">
+              <v-icon left>
+                mdi-delete
+              </v-icon>
               delete
             </v-btn>
           </div>
-        </div>
+        </v-card>
       </div>
     </v-container>
   </div>
@@ -181,14 +190,9 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
-}
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
-/* Header/Blog Title */
 .header {
   padding: 30px;
   font-size: 40px;
@@ -196,56 +200,29 @@ body {
   background: black;
 }
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
-}
-
-/* Fake image */
-
-/* Add a card effect for articles */
-.card {
-  background-color: black;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Footer */
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn,
-  .rightcolumn {
-    width: 100%;
-    padding: 0;
-  }
-}
 h2 {
-  font-family: "Anton", sans-serif;
+  font-family: "Englebert", sans-serif;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  margin: 40px 0 20px;
+  text-align: center;
 }
 .img {
   height: 300px;
-  width: 150%;
+  width: 650px;
+}
+p {
+  font-family: "italic";
+  color: white;
+  font-size: 20px;
+}
+h1 {
+  font-size: 30px;
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: center;
 }
 .div {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
+  background-color: #212121;
 }
 </style>

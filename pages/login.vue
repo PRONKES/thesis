@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container pa-12 fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
         <h1 class="text">Sign In</h1>
@@ -84,15 +84,13 @@ export default {
           password: this.password
         };
         let rtn = await this.$axios.$post("/api/login", userObj);
-        this.$router.push("/");
-
-        console.log({ user, rtn });
         const user = await this.$axios.$get("/api/user");
         if (user.username) {
           this.changeUser(user);
         } else {
           this.changeUser({ username: false });
         }
+        this.$router.push("/profile");
       }
     },
     reset() {
