@@ -65,7 +65,10 @@ module.exports = {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: "https://the-escaper.herokuapp.com/",
+    https: true
+  },
   mdbvue: {},
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
