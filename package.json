@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "server": "nodemon api/server",
-    "debug": "ndb api/server.js",
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "startNuxt": "nuxt start",
     "generate": "nuxt generate",
     "start": "node api/server"
   },
