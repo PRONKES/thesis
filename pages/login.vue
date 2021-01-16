@@ -44,13 +44,6 @@
               >
                 <i class="mdi mdi-google-plus"></i> Login With Google
               </v-btn>
-              <v-btn
-                href="/api/auth/facebook"
-                type="button"
-                class="btn btn-outline-primary btn-block"
-              >
-                <i class="mdi mdi-facebook"></i> Login With Facebook
-              </v-btn>
             </div>
           </v-layout>
         </v-form>

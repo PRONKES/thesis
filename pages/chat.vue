@@ -29,9 +29,6 @@
     <v-row justify="center">
       <v-col cols="12" sm="10">
         <v-card max-width="700px" height="400px" class="scroll">
-          <v-toolbar dark color="primary darken-1">
-            <v-toolbar-title class="name">Hi, There!</v-toolbar-title>
-          </v-toolbar>
           <v-list id="messages" dense v-for="(msg, i) in messages" :key="i">
             <div class="msg">
               <v-list-item>
@@ -151,13 +148,13 @@ h3 {
   height: 500px;
 }
 .msg {
-  height: 80px;
+  height: 50px;
   background-color: rgb(250, 248, 248);
   border-radius: 25px;
 }
 #sender {
   font-size: 20px;
-  color: black;
+  color: blue;
   font-family: "Englebert", sans-serif;
 }
 .name {
