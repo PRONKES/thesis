@@ -22,13 +22,5 @@ router.route("/").get(function(req, res) {
   });
 });
 
-router.route("/:id").put(function(req, res) {
-  ratingControle.update(req.params.id, req.body, (err, data) => {
-    if (err) {
-      throw err;
-    }
-    res.send(data);
-  });
-});
 
 module.exports = router;

@@ -7,12 +7,5 @@ module.exports = {
   },
   read: (callbacks) => {
     Modelrating.find().exec(callbacks);
-  },
-  update: (id, obj, callback) => {
-    Modelrating.findOneAndUpdate(
-      { _id: id },
-      obj,
-      callback
-    );
   }
 }
