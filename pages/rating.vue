@@ -21,7 +21,7 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions class="justify-space-between">
-      <v-btn color="primary" text>
+      <v-btn color="primary" text @click="postRating">
         Rate Now
       </v-btn>
     </v-card-actions>
@@ -31,11 +31,13 @@
 <script>
 export default {
   data: () => ({
-    rating: 3.5
+    rating: 0
   }),
   methods: {
-   async postRating(){
-  await this.$axios.$post("/api/rating", this.rating)
+    async postRating() {
+      var obj = { rating: this.rating };
+      console.log(obj);
+      await this.$axios.$post("/api/rating", obj);
     }
   }
 };
