@@ -158,6 +158,9 @@ routers.use("/chats", chats);
 
 var users = require("./routes/users.js");
 routers.use("/users", checkAuthenticated, users);
+
+var rating = require("./routes/rating.js");
+routers.use("/rating", rating);
 // View engine setup
 
 app.use("/api", routers);

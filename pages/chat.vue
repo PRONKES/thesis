@@ -148,13 +148,14 @@ h3 {
   height: 500px;
 }
 .msg {
-  height: 50px;
-  background-color: rgb(250, 248, 248);
-  border-radius: 25px;
+  height: 60px;
+  background-color: rgb(79, 182, 230);
+  border-radius: 15px;
+  width:400px;
 }
 #sender {
   font-size: 20px;
-  color: blue;
+  color: rgb(49, 49, 146);
   font-family: "Englebert", sans-serif;
 }
 .name {
