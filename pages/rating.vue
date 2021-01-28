@@ -20,8 +20,20 @@
       </div>
     </v-card-text>
     <v-divider></v-divider>
+      <v-col
+          cols="12"
+          sm="20"
+        >
+          <v-text-field
+            v-model="comment"
+            solo
+            label="Leave comment"
+            clearable
+          ></v-text-field>
+        </v-col>
+
     <v-card-actions class="justify-space-between">
-      <v-btn color="primary" text @click="postRating">
+      <v-btn class="btn" color="primary" text @click="postRating">
         Rate Now
       </v-btn>
     </v-card-actions>
@@ -31,14 +43,21 @@
 <script>
 export default {
   data: () => ({
-    rating: 0
+    rating: 0,
+    comment:""
   }),
   methods: {
     async postRating() {
-      var obj = { rating: this.rating };
+      var obj = { rating: this.rating , comment: this.comment};
       console.log(obj);
       await this.$axios.$post("/api/rating", obj);
     }
   }
 };
 </script>
+<style scoped>
+.btn{
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
