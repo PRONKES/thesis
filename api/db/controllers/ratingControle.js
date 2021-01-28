@@ -7,5 +7,10 @@ module.exports = {
   },
   read: (callbacks) => {
     Modelrating.find().exec(callbacks);
-  }
+  },readOne: async id => {
+    let rating = await Modelrating.findOne({
+      _id: id
+    }).exec();
+    return rating;
+  },
 }
