@@ -1,20 +1,22 @@
 <template>
-  <v-card class="mt-4 mx-auto" max-width="900" >
-    <v-sheet v-for="(val, index) in value"
-        :key="index"
+  <v-card class="mt-4 mx-auto" max-width="900"  >
+    <v-col v-for="(val, i) in value"
+        :key="i">
+    <v-sheet 
       class="v-sheet--offset mx-auto"
       color="blue"
       elevation="12"
       max-width="calc(100% - 32px)"
-    >{{val.rating}}
+    >
       <v-sparkline
         :labels="labels"
         :value="value"
         color="white"
         line-width="2"
         padding="16"
-      ></v-sparkline>
+      >{{val.rating[0]}}</v-sparkline>
     </v-sheet>
+    </v-col>
   </v-card>
 </template>
 

@@ -18,7 +18,7 @@
           <v-card-subtitle class="ttr" style="justify-content: left" >{{
             user.username
           }}</v-card-subtitle>
-           <v-col   v-for="(rat, index) in rating"
+           <v-col v-for="(rat, index) in rating"
         :key="index">
           <v-card-text class="text--primary" >
             
