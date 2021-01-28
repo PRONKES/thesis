@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container pa-12 fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
         <h1 class="text">Sign In</h1>
@@ -43,13 +43,6 @@
                 class="btn btn-outline-danger btn-block"
               >
                 <i class="mdi mdi-google-plus"></i> Login With Google
-              </v-btn>
-              <v-btn
-                href="/api/auth/facebook"
-                type="button"
-                class="btn btn-outline-primary btn-block"
-              >
-                <i class="mdi mdi-facebook"></i> Login With Facebook
               </v-btn>
             </div>
           </v-layout>
